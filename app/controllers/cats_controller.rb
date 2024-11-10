@@ -38,14 +38,11 @@ class CatsController < ApplicationController
 
   # PATCH/PUT /cats/1 or /cats/1.json
   def update
-    respond_to do |format|
-      if @cat.update(cat_params)
-        format.html { redirect_to @cat, notice: "Cat was successfully updated." }
-        format.json { render :show, status: :ok, location: @cat }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @cat.errors, status: :unprocessable_entity }
-      end
+    if @cat.update(cat_params)
+      flash.now.notice = "ねこを更新しました"
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @cat.errors, status: :unprocessable_entity }
     end
   end
 
