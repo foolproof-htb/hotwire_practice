@@ -44,11 +44,7 @@ class CatsController < ApplicationController
   # DELETE /cats/1 or /cats/1.json
   def destroy
     @cat.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to cats_path, status: :see_other, notice: "Cat was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    flash.now.notice = "ねこを削除しました"
   end
 
   private
