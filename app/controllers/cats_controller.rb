@@ -25,14 +25,10 @@ class CatsController < ApplicationController
   def create
     @cat = Cat.new(cat_params)
 
-    respond_to do |format|
-      if @cat.save
-        format.html { redirect_to @cat, notice: "Cat was successfully created." }
-        format.json { render :show, status: :created, location: @cat }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @cat.errors, status: :unprocessable_entity }
-      end
+    if @cat.save
+      flash.now.notice = "ねこを登録しました"
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
