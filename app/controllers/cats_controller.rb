@@ -37,8 +37,7 @@ class CatsController < ApplicationController
     if @cat.update(cat_params)
       flash.now.notice = "ねこを更新しました"
     else
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @cat.errors, status: :unprocessable_entity }
+      render :edit, status: :unprocessable_entity
     end
   end
 
